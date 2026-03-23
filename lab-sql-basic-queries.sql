@@ -15,7 +15,7 @@ SELECT title
 FROM film;
 
 -- 3.2 List of languages used in films, with the column aliased as language from the language table
-SELECT name
+SELECT name AS language
 FROM language;
 
 -- 3.3 List of first names of all employees from the staff table
@@ -29,19 +29,16 @@ ORDER BY release_year;
 
 -- Counting records for database insights:
 -- 5.1 Determine the number of stores that the company has.
-SELECT COUNT(*)
+SELECT COUNT(DISTINCT store_id)
 FROM store;
 
 -- 5.2 Determine the number of employees that the company has.
-SELECT COUNT(*)
+SELECT COUNT(DISTINCT staff_id)
 FROM staff;
 
 -- 5.3 Determine how many films are available for rent and how many have been rented.
-SELECT COUNT(*) AS available_for_rent
-FROM inventory;
-
-SELECT COUNT(DISTINCT inventory_id) AS rented_films
-FROM rental;
+SELECT COUNT(DISTINCT film_id) FROM inventory;
+SELECT COUNT(DISTINCT inventory_id) FROM rental;
 
 -- 5.4 Determine the number of distinct last names of the actors in the database.
 SELECT COUNT(DISTINCT last_name) 
@@ -64,7 +61,7 @@ WHERE first_name = 'SCARLETT';
 -- 7.2 Retrieve all movies that have ARMAGEDDON in their title and have a duration longer than 100 minutes.
 SELECT film_id, title
 FROM film
-WHERE title like '%armageddon%' AND length < 100 ;
+WHERE title like '%ARMAGEDDON%' AND length > 100 ;
 
 -- Hint: use LIKE operator. More information here.
 -- 7.3 Determine the number of films that include Behind the Scenes content
